@@ -144,7 +144,11 @@ const Home = () => {
           ) : rooms.length === 0 ? (
             <div className="no-rooms-msg">
               <h3>No rooms match your preference.</h3>
-              <p>Try adjusting your filters for more results.</p>
+              <p style={{color: '#ff6b6b', marginTop: '10px'}}>
+                 ⚠️ Connection Error! Your frontend cannot reach your backend. <br />
+                 Tried reaching: {import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}
+              </p>
+              <p>Try adjusting your filters or ensure your Backend is running on Render.</p>
             </div>
           ) : (
             rooms.map((room, idx) => (
