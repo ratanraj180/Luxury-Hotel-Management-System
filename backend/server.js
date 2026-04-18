@@ -10,7 +10,11 @@ const app = express();
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:5173', process.env.FRONTEND_URL],
+  origin: function(origin, callback){
+    // allow requests with no origin (like mobile apps or curl requests)
+    if(!origin) return callback(null, true);
+    return callback(null, true);
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization']
